@@ -24,6 +24,15 @@
         // Activitys do Jogo
         <activity android:name=".MenuPrincipal" />
         <activity android:name=".GameOver"/>
+        <activity android:name=".Engine.JogoZang"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.JogoZang" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
