@@ -7,6 +7,66 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.jaco.splashzang.GameOver">
+    tools:context="com.example.jaco.splashzang.GameOver"
+    android:background="@drawable/over">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textnome"
+        android:layout_alignTop="@+id/textmsg"
+        android:layout_toLeftOf="@+id/textmsg"
+        android:layout_toStartOf="@+id/textmsg"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/textoresultado"
+        android:id="@+id/textmsg"
+        android:layout_marginTop="202dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#FFFFFF"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textpontos"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textnome"
+        android:layout_toLeftOf="@+id/textpontos2"
+        android:layout_toStartOf="@+id/textpontos2"
+        android:layout_marginRight="31dp"
+        android:layout_marginEnd="31dp"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/pontos"
+        android:id="@+id/textpontos2"
+        android:textColor="#FFFFFF"
+        android:layout_alignTop="@+id/textpontos"
+        android:layout_alignRight="@+id/volta"
+        android:layout_alignEnd="@+id/volta" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/volta"
+        android:id="@+id/volta"
+        android:layout_marginTop="78dp"
+        android:layout_below="@+id/textpontos2"
+        android:layout_centerHorizontal="true"
+        android:onClick="voltar"/>
 
 </RelativeLayout>
