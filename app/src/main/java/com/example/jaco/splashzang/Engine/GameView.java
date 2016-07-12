@@ -233,7 +233,7 @@ public class GameView extends View{
     }
 
     //setando valores para recuperar os dados obtidos no jogo para armazenar no banco de dados
-    public class Variavel
+    /* public class Variavel
     {
         String nomefinal;
         int pontosfinal;
@@ -253,7 +253,7 @@ public class GameView extends View{
         {
             return pontosfinal;
         }
-    }
+    } */
 
 
 }
