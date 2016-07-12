@@ -92,12 +92,15 @@ public class GameView extends View{
 
         //validando a velocidade do jogo
         int falling_speed;
-        if (dificuldade.equals("facil")){
+        if (dificuldade.equals("facil")) {
             falling_speed = 3;
-        }else if (dificuldade.equals("medio")){
+
+        } else if (dificuldade.equals("medio")) {
             falling_speed = 6;
-        }else{
+
+        } else {
             falling_speed = 9;
+
         }
 
         Resources res;
@@ -109,7 +112,7 @@ public class GameView extends View{
         Bitmap score_nr = BitmapFactory.decodeResource(res, R.drawable.score);
         Bitmap over_nr = BitmapFactory.decodeResource(res, R.drawable.over);
         Bitmap good_nr = BitmapFactory.decodeResource(res, R.drawable.good);
-        Bitmap bad_nr = BitmapFactory.decodeResource(res, R.drawable.ghost);
+        Bitmap bad_nr = BitmapFactory.decodeResource(res, R.drawable.space_invader);
 
         //verificando o tamanho da tela do device do usuario
         DisplayMetrics metrics = res.getDisplayMetrics();
