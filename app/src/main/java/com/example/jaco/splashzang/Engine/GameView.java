@@ -1,7 +1,11 @@
 package com.example.jaco.splashzang.Engine;
 
+import android.view.View;
+
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,14 +16,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
-import android.view.View;
 import java.util.Random;
+import com.example.jaco.splashzang.BD.RecordeService;
+import com.example.jaco.splashzang.GameOver;
 import com.example.jaco.splashzang.R;
 
 /**
  * Created by jaco on 12/07/16.
  */
-public class GameView extends View{
+public class GameView extends View {
 
     //Variaveis
     private Bitmap fundo;
@@ -32,7 +37,9 @@ public class GameView extends View{
 
     //Game loop
     private int time = 60;
-    private int pontos = 0;
+    private long pontos = 0L;
+    private long recorde;
+    private RecordeService recordeService;
     private boolean game_is_running;
     private String nome;
 
@@ -145,9 +152,17 @@ public class GameView extends View{
 
         for (int i=0; i<9; i++) {
             bom[i] = new Object(0,0, falling_speed, good, rand);
-            bom[i].resetPos(width,height);
             mau[i] = new Object(0,0, falling_speed, bad, rand);
-            mau[i].resetPos(width,height);
+
+            if (bom[i] == mau[i]){
+                bom[i].resetPos(width,height);
+                mau[i].resetPos(width,height);
+            }else{
+                bom[i].resetPos(width,height);
+                mau[i].resetPos(width,height);
+            }
+
+
         }
 
         /* Threads */
@@ -156,6 +171,8 @@ public class GameView extends View{
         drawing_thread = new DrawingThread();
         timer_thread.start();
         drawing_thread.start();
+
+        recorde = recordeService.getRecorde();
     }
 
     //Metodo Draw para criar os desenhos
@@ -171,23 +188,31 @@ public class GameView extends View{
             canvas.drawText("" + time, (float) (timer.getWidth() * 0.4), (float) (canvas.getHeight() - timer.getHeight() * 0.40), paint);
 
             for( int i=0; i<9; i++) {
-                bom[i].update();
-                if (bom[i].getY() >= canvas.getHeight()){
-                    bom[i].resetPos(width,height);
-                }
-                bom[i].draw(canvas);
+                    bom[i].update();
+                    if (bom[i].getY() >= canvas.getHeight()){
+                        bom[i].resetPos(width,height);
+                    }
+                    bom[i].draw(canvas);
 
-                mau[i].update();
-                if (mau[i].getY() >= canvas.getHeight()){
-                    mau[i].resetPos(width,height);
-                }
-                mau[i].draw(canvas);
+                    mau[i].update();
+                    if (mau[i].getY() >= canvas.getHeight()){
+                        mau[i].resetPos(width,height);
+                    }
+                    mau[i].draw(canvas);
             }
 
         }else {
             canvas.drawBitmap(over,0,0,null);
             canvas.drawText(nome + ", sua pontuação foi:", (float) (canvas.getWidth() / 5), (float) (canvas.getHeight() / 1.7), paintover);
             canvas.drawText(pontos + " pontos!", (float) (canvas.getWidth() / 5), (float) (canvas.getHeight() / 1.5), paintover);
+            atualizaRecorde();
+        }
+    }
+
+    public void atualizaRecorde(){
+        if (this.pontos > this.recorde){
+            this.recorde = this.pontos;
+            this.recordeService.novoRecorde(recorde);
         }
     }
 
@@ -234,6 +259,7 @@ public class GameView extends View{
             e.printStackTrace();
         }
     }
+
 
     //setando valores para recuperar os dados obtidos no jogo para armazenar no banco de dados
     /* public class Variavel
