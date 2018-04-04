@@ -38,8 +38,8 @@ public class GameView extends View {
     //Game loop
     private int time = 60;
     private long pontos = 0L;
-    private long recorde;
-    private RecordeService recordeService;
+    //private long recorde;
+    //private RecordeService recordeService;
     private boolean game_is_running;
     private String nome;
 
@@ -172,7 +172,7 @@ public class GameView extends View {
         timer_thread.start();
         drawing_thread.start();
 
-        recorde = recordeService.getRecorde();
+        //recorde = recordeService.getRecorde();
     }
 
     //Metodo Draw para criar os desenhos
@@ -205,16 +205,16 @@ public class GameView extends View {
             canvas.drawBitmap(over,0,0,null);
             canvas.drawText(nome + ", sua pontuação foi:", (float) (canvas.getWidth() / 5), (float) (canvas.getHeight() / 1.7), paintover);
             canvas.drawText(pontos + " pontos!", (float) (canvas.getWidth() / 5), (float) (canvas.getHeight() / 1.5), paintover);
-            atualizaRecorde();
+            //atualizaRecorde();
         }
     }
 
-    public void atualizaRecorde(){
+    /*public void atualizaRecorde(){
         if (this.pontos > this.recorde){
             this.recorde = this.pontos;
             this.recordeService.novoRecorde(recorde);
         }
-    }
+    }*/
 
     //Metodo para validação do toque na tela
     @Override
