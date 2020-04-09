@@ -75,6 +75,7 @@ public class SplashScreen extends AppCompatActivity {
      * while interacting with activity UI.
      */
     private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+        @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (AUTO_HIDE) {
@@ -92,7 +93,6 @@ public class SplashScreen extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
 
         // Timer para trocar tela
         Thread timer = new Thread() {
